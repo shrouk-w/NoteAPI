@@ -19,13 +19,13 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-context")
-	implementation("org.springframework.boot:spring-aop")
+	//implementation("org.springframework.boot:spring-context")
+	//implementation("org.springframework.boot:spring-aop")
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
-	implementation("org.springframework.boot:spring-web")
-	implementation("org.springframework.boot:spring-webmvc")
+	//implementation("org.springframework.boot:spring-web")
+	//implementation("org.springframework.boot:spring-webmvc")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
