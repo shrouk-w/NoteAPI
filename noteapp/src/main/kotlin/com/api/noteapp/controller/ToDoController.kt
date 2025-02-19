@@ -47,7 +47,7 @@ class ToDoController {
 
     @DeleteMapping(
         value = ["/{id}"],
-                produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
+        produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
     fun deleteTodo(
         @PathVariable("id") id: String
