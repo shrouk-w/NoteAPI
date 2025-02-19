@@ -34,7 +34,6 @@ class NoteController {
         consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
     fun insertNote(@RequestBody note: Note) : Note {
-        note.id = UUID.randomUUID().toString()
         return note
     }
 

@@ -41,7 +41,6 @@ class ToDoController {
         @RequestBody todo: ToDo
     ): ToDo
     {
-        todo.id = UUID.randomUUID().toString()
         return todo
     }
 
