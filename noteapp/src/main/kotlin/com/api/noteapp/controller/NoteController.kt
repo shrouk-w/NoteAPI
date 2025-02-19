@@ -3,7 +3,6 @@ package com.api.noteapp.controller
 import com.api.noteapp.data.Note
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -13,7 +12,6 @@ import java.util.*
 class NoteController {
 
     @GetMapping(
-        value = ["/obtain"],
         produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
     )
     fun getNotes() : List<Note> {
@@ -32,7 +30,6 @@ class NoteController {
     }
 
     @PutMapping(
-        value = ["/insert"],
         produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
         consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
@@ -42,7 +39,7 @@ class NoteController {
     }
 
     @DeleteMapping(
-        value = ["/delete/{id}"],
+        value = ["/{id}"],
         produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
     fun deleteNote(@PathVariable(name = "id") id: String) : Boolean {
@@ -51,7 +48,6 @@ class NoteController {
     }
 
     @PostMapping(
-        value = ["/update"],
         produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
         consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
