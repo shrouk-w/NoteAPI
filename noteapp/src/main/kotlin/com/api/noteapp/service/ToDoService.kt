@@ -1,36 +1,20 @@
 package com.api.noteapp.service
-
 import com.api.noteapp.data.ToDo
+import com.api.noteapp.repository.TodoRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service("ToDo service")
 class ToDoService {
+    @Autowired
+    lateinit var repository: TodoRepository
 
-    fun getTodos(): List<ToDo>
-    {
-        return Arrays.asList(
-            ToDo(
-                UUID.randomUUID().toString(),
-                title = "first task",
-                content = "skibidi fortnite womp womp",
-                schedule = System.currentTimeMillis(),
-            ),
-            ToDo(
-                UUID.randomUUID().toString(),
-                title = "cinco task",
-                content = "do you are have stupido",
-                schedule = System.currentTimeMillis()+10
-            )
-        )
-    }
+    fun getTodos(): Iterable<ToDo> = repository.findAll()
 
-    fun insertTodo(toDo: ToDo): ToDo{
-        toDo.id = UUID.randomUUID().toString()
-        return toDo
-    }
+    fun insertTodo(toDo: ToDo): ToDo = repository.save(toDo)
 
-    fun deleteTodo(id: String): Boolean = false
+    fun deleteTodo(id: String) = repository.deleteById(id)
 
-    fun updateTodo(toDo: ToDo): Boolean = true
+    fun updateTodo(toDo: ToDo): ToDo = repository.save(toDo)
 }

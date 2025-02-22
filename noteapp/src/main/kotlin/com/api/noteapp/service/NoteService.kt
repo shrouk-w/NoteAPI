@@ -1,31 +1,22 @@
 package com.api.noteapp.service
 
 import com.api.noteapp.data.Note
+import com.api.noteapp.repository.NoteRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.*
-
 
 @Service("Note service")
 class NoteService {
-    fun getNotes(): List<Note> = listOf(
-        Note(
-            title = "title",
-            content = "content",
-        ),
-        Note(
-            title = "title2",
-            content = "skibidi sigma to jest pięć, te piosenkęeeee"
-        )
-    )
+    @Autowired
+    lateinit var repository: NoteRepository
 
-    fun insertNote(note: Note): Note {
-        note.id = UUID.randomUUID().toString()
-        return note
-    }
+    fun getNotes(): Iterable<Note> = repository.findAll()
 
-    fun updateNote(note: Note): Boolean = false
+    fun insertNote(note: Note): Note = repository.save(note)
 
-    fun deleteNote(id: String): Boolean = true
+    fun updateNote(note: Note): Note = repository.save(note)
+
+    fun deleteNote(id: String)= repository.deleteById(id)
 
 
 }

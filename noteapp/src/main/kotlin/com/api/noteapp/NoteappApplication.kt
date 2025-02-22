@@ -8,6 +8,7 @@ class NoteappApplication
 
 
 fun main(args: Array<String>) {
+
 	runApplication<NoteappApplication>(*args)
-	
+
 }

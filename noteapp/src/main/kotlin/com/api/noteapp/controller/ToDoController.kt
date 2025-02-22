@@ -19,7 +19,7 @@ class ToDoController {
     @GetMapping(
         produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun getTodos(): List<ToDo> = service.getTodos()
+    fun getTodos(): Iterable<ToDo> = service.getTodos()
 
 
 
@@ -39,7 +39,7 @@ class ToDoController {
     )
     fun deleteTodo(
         @PathVariable("id") id: String
-    ) : Boolean = service.deleteTodo(id)
+    ) = service.deleteTodo(id)
 
 
 
@@ -49,7 +49,7 @@ class ToDoController {
     )
     fun updateTodo(
         @RequestBody todo: ToDo
-    ) : Boolean = service.updateTodo(todo)
+    ) : ToDo = service.updateTodo(todo)
 
 
 }
