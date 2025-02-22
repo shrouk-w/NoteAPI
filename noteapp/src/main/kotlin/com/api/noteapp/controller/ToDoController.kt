@@ -1,37 +1,27 @@
 package com.api.noteapp.controller
 
 import com.api.noteapp.data.ToDo
-import com.fasterxml.jackson.annotation.ObjectIdGenerators.UUIDGenerator
+import com.api.noteapp.service.ToDoService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 @RestController
 @RequestMapping("/todos")
 @EnableAutoConfiguration
 
 class ToDoController {
+
+    @Autowired
+    private lateinit var service: ToDoService
+
     @GetMapping(
         produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun getTodos(): List<ToDo>
-    {
-        return Arrays.asList(
-            ToDo(
-                UUID.randomUUID().toString(),
-                title = "first task",
-                content = "skibidi fortnite womp womp",
-                schedule = System.currentTimeMillis(),
-            ),
-            ToDo(
-                UUID.randomUUID().toString(),
-                title = "cinco task",
-                content = "do you are have stupido",
-                schedule = System.currentTimeMillis()+10
-            )
-        )
-    }
+    fun getTodos(): List<ToDo> = service.getTodos()
+
+
 
     @PutMapping(
         produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
@@ -39,10 +29,9 @@ class ToDoController {
     )
     fun insertTodo(
         @RequestBody todo: ToDo
-    ): ToDo
-    {
-        return todo
-    }
+    ): ToDo = service.insertTodo(todo)
+
+
 
     @DeleteMapping(
         value = ["/{id}"],
@@ -50,11 +39,9 @@ class ToDoController {
     )
     fun deleteTodo(
         @PathVariable("id") id: String
-    ) : Boolean
-    {
-        println("deleted todo with id: $id")
-        return true
-    }
+    ) : Boolean = service.deleteTodo(id)
+
+
 
     @PostMapping(
         produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
@@ -62,13 +49,7 @@ class ToDoController {
     )
     fun updateTodo(
         @RequestBody todo: ToDo
-    ) : ToDo
-    {
-        todo.title += "[zimana]"
-        todo.content += "[zimana]"
-        todo.schedule = System.currentTimeMillis()+1000
-        return todo
-    }
+    ) : Boolean = service.updateTodo(todo)
 
 
 }
