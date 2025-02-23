@@ -1,6 +1,5 @@
 package com.api.noteapp.controller
 
-import com.api.noteapp.data.ToDo
 import com.api.noteapp.data.ToDoDTO
 import com.api.noteapp.service.ToDoService
 import org.springframework.beans.factory.annotation.Autowired
@@ -51,6 +50,15 @@ class ToDoController {
     fun updateTodo(
         @RequestBody todo: ToDoDTO
     ) : ToDoDTO = service.updateTodo(todo)
+
+    @PostMapping(
+        value = ["/later_than"],
+        produces = arrayOf(MediaType.APPLICATION_JSON_VALUE),
+        consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
+    )
+    fun getTodosLaterThan(
+        @RequestBody payload: TodoLaterThanRequest
+    ): Iterable<ToDoDTO> = service.getScheduledLaterThan(payload.date)
 
 
 }

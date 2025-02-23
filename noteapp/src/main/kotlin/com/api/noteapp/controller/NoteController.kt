@@ -1,6 +1,5 @@
 package com.api.noteapp.controller
 
-import com.api.noteapp.data.Note
 import com.api.noteapp.data.NoteDTO
 import com.api.noteapp.service.NoteService
 import org.springframework.beans.factory.annotation.Autowired
@@ -43,5 +42,14 @@ class NoteController {
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
     fun updateNote(@RequestBody note: NoteDTO): NoteDTO = service.updateNote(note)
+
+    @PostMapping(
+        value = ["/by_title"],
+        produces = [MediaType.APPLICATION_JSON_VALUE],
+        consumes = [MediaType.APPLICATION_JSON_VALUE]
+    )
+    fun getNotesByTitle(
+        @RequestBody payload: NoteFindByTitleRequest
+    ): Iterable<NoteDTO> = service.findByTitle(payload.title)
 
 }

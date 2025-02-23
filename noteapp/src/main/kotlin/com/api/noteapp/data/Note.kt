@@ -10,6 +10,11 @@ import java.util.*
 @Table(name = "note")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
+@NamedQuery(
+    name = "Note.findbyTitle",
+    query = "SELECT n FROM Note n WHERE n.title LIKE ?1"
+)
+
 data class Note(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

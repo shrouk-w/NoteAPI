@@ -4,4 +4,5 @@ import com.api.noteapp.data.Note
 import org.springframework.data.repository.CrudRepository
 
 interface NoteRepository: CrudRepository<Note, String> {
+    fun findByTitle(title: String): Iterable<Note>
 }

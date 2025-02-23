@@ -30,5 +30,7 @@ class NoteService {
 
     fun deleteNote(id: String)= repository.deleteById(id)
 
+    fun findByTitle(title: String): Iterable<NoteDTO> = repository.findByTitle(title).map{NoteDTO(it)}
+
 
 }
