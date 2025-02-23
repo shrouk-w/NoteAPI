@@ -1,6 +1,7 @@
 package com.api.noteapp.controller
 
 import com.api.noteapp.data.ToDo
+import com.api.noteapp.data.ToDoDTO
 import com.api.noteapp.service.ToDoService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -19,7 +20,7 @@ class ToDoController {
     @GetMapping(
         produces = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
-    fun getTodos(): Iterable<ToDo> = service.getTodos()
+    fun getTodos(): Iterable<ToDoDTO> = service.getTodos()
 
 
 
@@ -28,8 +29,8 @@ class ToDoController {
         consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
     fun insertTodo(
-        @RequestBody todo: ToDo
-    ): ToDo = service.insertTodo(todo)
+        @RequestBody todo: ToDoDTO
+    ): ToDoDTO = service.insertTodo(todo)
 
 
 
@@ -48,8 +49,8 @@ class ToDoController {
         consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE)
     )
     fun updateTodo(
-        @RequestBody todo: ToDo
-    ) : ToDo = service.updateTodo(todo)
+        @RequestBody todo: ToDoDTO
+    ) : ToDoDTO = service.updateTodo(todo)
 
 
 }

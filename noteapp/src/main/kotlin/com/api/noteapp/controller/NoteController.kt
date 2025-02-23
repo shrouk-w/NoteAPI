@@ -1,6 +1,7 @@
 package com.api.noteapp.controller
 
 import com.api.noteapp.data.Note
+import com.api.noteapp.data.NoteDTO
 import com.api.noteapp.service.NoteService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -25,7 +26,7 @@ class NoteController {
         produces = [MediaType.APPLICATION_JSON_VALUE],
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun insertNote(@RequestBody note: Note) = service.insertNote(note)
+    fun insertNote(@RequestBody note: NoteDTO) = service.insertNote(note)
 
 
 
@@ -41,6 +42,6 @@ class NoteController {
         produces = [MediaType.APPLICATION_JSON_VALUE],
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun updateNote(@RequestBody note: Note): Note = service.updateNote(note)
+    fun updateNote(@RequestBody note: NoteDTO): NoteDTO = service.updateNote(note)
 
 }
