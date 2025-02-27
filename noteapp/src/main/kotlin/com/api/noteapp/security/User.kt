@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.Proxy
 import org.hibernate.annotations.UpdateTimestamp
 import java.util.*
 
@@ -17,6 +18,7 @@ import java.util.*
 @Entity
 @Table(name = "user")
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Proxy(lazy = false)
 
 open class User (
     @Id
