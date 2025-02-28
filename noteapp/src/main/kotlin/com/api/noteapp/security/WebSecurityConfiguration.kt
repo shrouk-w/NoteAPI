@@ -35,7 +35,7 @@ class WebSecurityConfiguration {
         http
             .csrf { it.disable() }
             .exceptionHandling { it.authenticationEntryPoint(unauthorizedHandler) }
-            .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
+            .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) }
             .authorizeHttpRequests { auth ->
                 auth
                     .requestMatchers("/notes", "/notes/**").authenticated()
